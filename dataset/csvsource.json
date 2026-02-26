@@ -1,0 +1,24 @@
+{
+	"name": "csvsource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataStorage_source_csv",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Fact_Sales_2.csv",
+				"folderPath": "csvfiles",
+				"fileSystem": "source"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
