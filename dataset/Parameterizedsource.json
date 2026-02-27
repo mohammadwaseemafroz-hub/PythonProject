@@ -1,0 +1,32 @@
+{
+	"name": "Parameterizedsource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataStorage_source_csv",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Pfilename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().Pfilename",
+					"type": "Expression"
+				},
+				"folderPath": "csvfiles",
+				"fileSystem": "destination"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
