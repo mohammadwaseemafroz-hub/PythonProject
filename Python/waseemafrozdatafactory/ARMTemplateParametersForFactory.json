@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "waseemafrozdatafactory"
+		},
+		"AzureDataStorage_source_csv_accountKey": {
+			"value": ""
+		},
+		"AzureDataStorage_source_csv_properties_typeProperties_url": {
+			"value": "https://waseemafrozstorage.dfs.core.windows.net/"
+		},
+		"linkgit_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com"
+		}
+	}
+}
