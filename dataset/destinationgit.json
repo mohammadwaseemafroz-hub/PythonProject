@@ -1,10 +1,6 @@
 {
 	"name": "destinationgit",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "AzureDataStorage_source_csv",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
