@@ -1,10 +1,6 @@
 {
 	"name": "Destinationcsvfiles",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "AzureDataStorage_source_csv",
-			"type": "LinkedServiceReference"
-		},
 		"parameters": {
 			"Pfilename": {
 				"type": "string"
