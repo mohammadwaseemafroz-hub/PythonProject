@@ -1,5 +1,5 @@
 {
-	"name": "Metadata_src",
+	"name": "metadata_reportingdestination",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LinkserviceDL",
@@ -20,7 +20,7 @@
 					"type": "Expression"
 				},
 				"folderPath": "csvfiles",
-				"fileSystem": "destination"
+				"fileSystem": "reporting"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
