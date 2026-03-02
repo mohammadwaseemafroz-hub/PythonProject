@@ -5,10 +5,6 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "Dataflowsource",
-						"type": "DatasetReference"
-					},
 					"name": "sourcecsv"
 				}
 			],
@@ -35,8 +31,7 @@
 				"          price as double",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> sourcecsv",
+				"     validateSchema: false) ~> sourcecsv",
 				"sourcecsv select(mapColumn(",
 				"          transaction_id,",
 				"          transactional_date,",

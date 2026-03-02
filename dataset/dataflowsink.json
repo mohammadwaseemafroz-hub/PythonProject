@@ -1,5 +1,5 @@
 {
-	"name": "GITSRC_destination",
+	"name": "dataflowsink",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LinkserviceDL",
@@ -10,9 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "file2.csv",
-				"folderPath": "csvfiles",
-				"fileSystem": "destination"
+				"folderPath": "dataflowsoutput",
+				"fileSystem": "reporting"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
