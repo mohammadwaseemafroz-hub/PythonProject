@@ -7,21 +7,17 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "waseemafrozdatafactory"
 		},
-		"AzureDataStorage_source_csv_accountKey": {
+		"LinkserviceDL_accountKey": {
 			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'AzureDataStorage_source_csv'"
-		},
-		"AzureDataStorage_source_csv_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://waseemafrozstorage.dfs.core.windows.net/"
-		},
-		"linkgit_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://raw.githubusercontent.com"
+			"metadata": "Secure string for 'accountKey' of 'LinkserviceDL'"
 		},
 		"HttpServer1_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://raw.githubusercontent.com"
+			"defaultValue": "https://raw.githubusercontent.com/"
+		},
+		"LinkserviceDL_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://waseemafrozstorage.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -50,17 +46,14 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"AzureDataStorage_source_csv_accountKey": {
-						"value": "[parameters('AzureDataStorage_source_csv_accountKey')]"
-					},
-					"AzureDataStorage_source_csv_properties_typeProperties_url": {
-						"value": "[parameters('AzureDataStorage_source_csv_properties_typeProperties_url')]"
-					},
-					"linkgit_properties_typeProperties_url": {
-						"value": "[parameters('linkgit_properties_typeProperties_url')]"
+					"LinkserviceDL_accountKey": {
+						"value": "[parameters('LinkserviceDL_accountKey')]"
 					},
 					"HttpServer1_properties_typeProperties_url": {
 						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
+					},
+					"LinkserviceDL_properties_typeProperties_url": {
+						"value": "[parameters('LinkserviceDL_properties_typeProperties_url')]"
 					}
 				}
 			},

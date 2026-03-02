@@ -5,17 +5,14 @@
 		"factoryName": {
 			"value": "waseemafrozdatafactory"
 		},
-		"AzureDataStorage_source_csv_accountKey": {
+		"LinkserviceDL_accountKey": {
 			"value": ""
 		},
-		"AzureDataStorage_source_csv_properties_typeProperties_url": {
-			"value": "https://waseemafrozstorage.dfs.core.windows.net/"
-		},
-		"linkgit_properties_typeProperties_url": {
-			"value": "https://raw.githubusercontent.com"
-		},
 		"HttpServer1_properties_typeProperties_url": {
-			"value": "https://raw.githubusercontent.com"
+			"value": "https://raw.githubusercontent.com/"
+		},
+		"LinkserviceDL_properties_typeProperties_url": {
+			"value": "https://waseemafrozstorage.dfs.core.windows.net/"
 		}
 	}
 }
