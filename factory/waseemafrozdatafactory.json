@@ -1,0 +1,9 @@
+{
+	"name": "waseemafrozdatafactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a2cef583-2d14-4d56-85c9-98761d78dca1",
+		"tenantId": "bd84e6e9-b136-49db-8630-cbe1c6caf09b"
+	}
+}
