@@ -1,6 +1,10 @@
 {
 	"name": "Destinationcsvfiles",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkserviceDL",
+			"type": "LinkedServiceReference"
+		},
 		"parameters": {
 			"Pfilename": {
 				"type": "string"
