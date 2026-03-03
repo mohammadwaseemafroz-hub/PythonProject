@@ -1,0 +1,26 @@
+{
+	"name": "Source_binary",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkserviceDL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Srcfilename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().Srcfilename",
+					"type": "Expression"
+				},
+				"fileSystem": "source"
+			}
+		}
+	}
+}

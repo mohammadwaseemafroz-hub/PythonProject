@@ -1,0 +1,33 @@
+{
+	"name": "Destination_binary",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkserviceDL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"destfilename": {
+				"type": "string"
+			},
+			"destfoldername": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().destfilename",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().destfoldername",
+					"type": "Expression"
+				},
+				"fileSystem": "filesdestination"
+			}
+		}
+	}
+}
