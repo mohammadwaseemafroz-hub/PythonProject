@@ -5,8 +5,20 @@
 		"factoryName": {
 			"value": "waseemafrozdatafactory"
 		},
+		"AzureSqlDatabase_password": {
+			"value": ""
+		},
 		"LinkserviceDL_accountKey": {
 			"value": ""
+		},
+		"AzureSqlDatabase_properties_typeProperties_server": {
+			"value": "waseem.database.windows.net"
+		},
+		"AzureSqlDatabase_properties_typeProperties_database": {
+			"value": "waseemDB"
+		},
+		"AzureSqlDatabase_properties_typeProperties_userName": {
+			"value": "waseem"
 		},
 		"HttpServer1_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/"
