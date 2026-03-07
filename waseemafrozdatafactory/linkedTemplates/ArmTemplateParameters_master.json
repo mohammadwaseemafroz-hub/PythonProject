@@ -26,7 +26,7 @@
 		"LinkserviceDL_properties_typeProperties_url": {
 			"value": "https://waseemafrozstorage.dfs.core.windows.net/"
 		},
-		"managertrigger_properties_typeProperties_scope": {
+		"mantrigger_properties_typeProperties_scope": {
 			"value": "/subscriptions/f4f9bdf4-b629-40f8-8f41-e6d28f3a615a/resourceGroups/RG_AzureProject/providers/Microsoft.Storage/storageAccounts/waseemafrozstorage"
 		},
 		"containerUri": {

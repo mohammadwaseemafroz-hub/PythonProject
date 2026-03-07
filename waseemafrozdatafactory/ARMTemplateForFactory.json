@@ -35,7 +35,7 @@
 			"type": "string",
 			"defaultValue": "https://waseemafrozstorage.dfs.core.windows.net/"
 		},
-		"managertrigger_properties_typeProperties_scope": {
+		"mantrigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/f4f9bdf4-b629-40f8-8f41-e6d28f3a615a/resourceGroups/RG_AzureProject/providers/Microsoft.Storage/storageAccounts/waseemafrozstorage"
 		}
@@ -1393,36 +1393,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/managertrigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pipelinemanager",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/source/blobs/Fact_Sales_1.csv",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('managertrigger_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pipelinemanager')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -1514,7 +1484,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy manager files",
+						"name": "Copy data1",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -1560,25 +1530,25 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "Storageeventsource",
+								"referenceName": "storageeventsource",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "Storageeventdestination",
+								"referenceName": "eventdestination",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						]
 					},
 					{
-						"name": "Deletestoragefile",
+						"name": "Delete1",
 						"type": "Delete",
 						"dependsOn": [
 							{
-								"activity": "Copy manager files",
+								"activity": "Copy data1",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -1594,7 +1564,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"dataset": {
-								"referenceName": "Storageeventsource",
+								"referenceName": "storageeventsource",
 								"type": "DatasetReference",
 								"parameters": {}
 							},
@@ -1613,12 +1583,12 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Storageeventsource')]",
-				"[concat(variables('factoryId'), '/datasets/Storageeventdestination')]"
+				"[concat(variables('factoryId'), '/datasets/storageeventsource')]",
+				"[concat(variables('factoryId'), '/datasets/eventdestination')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Storageeventsource')]",
+			"name": "[concat(parameters('factoryName'), '/storageeventsource')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1631,7 +1601,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "Fact_Sales_1.csv",
+						"fileName": "apple_global_sales_dataset.csv",
 						"fileSystem": "source"
 					},
 					"columnDelimiter": ",",
@@ -1646,7 +1616,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Storageeventdestination')]",
+			"name": "[concat(parameters('factoryName'), '/eventdestination')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1671,6 +1641,36 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LinkserviceDL')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/mantrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pipelinemanager",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/source/blobs/apple_global_sales_dataset.csv",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('mantrigger_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pipelinemanager')]"
 			]
 		}
 	]
