@@ -28,6 +28,9 @@
 		},
 		"trigger_properties_typeProperties_scope": {
 			"value": "/subscriptions/f4f9bdf4-b629-40f8-8f41-e6d28f3a615a/resourceGroups/RG_AzureProject/providers/Microsoft.Storage/storageAccounts/waseemafrozstorage"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"value": "/subscriptions/f4f9bdf4-b629-40f8-8f41-e6d28f3a615a/resourceGroups/RG_AzureProject/providers/Microsoft.Storage/storageAccounts/waseemafrozstorage"
 		}
 	}
 }

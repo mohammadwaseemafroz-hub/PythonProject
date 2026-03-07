@@ -38,6 +38,10 @@
 		"trigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/f4f9bdf4-b629-40f8-8f41-e6d28f3a615a/resourceGroups/RG_AzureProject/providers/Microsoft.Storage/storageAccounts/waseemafrozstorage"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/f4f9bdf4-b629-40f8-8f41-e6d28f3a615a/resourceGroups/RG_AzureProject/providers/Microsoft.Storage/storageAccounts/waseemafrozstorage"
 		}
 	},
 	"variables": {
@@ -1509,7 +1513,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -1616,6 +1620,36 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/Dataflowreportingcsv')]",
 				"[concat(variables('factoryId'), '/datasets/dataflowsink')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger1')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pipelineManager",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/source/blobs/Fact_Sales_1.csv",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('trigger1_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pipelineManager')]"
 			]
 		}
 	]
