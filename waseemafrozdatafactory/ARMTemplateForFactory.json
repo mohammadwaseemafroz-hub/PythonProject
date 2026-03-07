@@ -1521,7 +1521,7 @@
 				],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"blobPathBeginsWith": "/source/blobs/Fact_Sales_1.csv",
+					"blobPathBeginsWith": "/source/blobs/csvfiles/Fact_Sales_1.csv",
 					"ignoreEmptyBlobs": true,
 					"scope": "[parameters('Filetrigger_properties_typeProperties_scope')]",
 					"events": [
