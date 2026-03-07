@@ -35,11 +35,7 @@
 			"type": "string",
 			"defaultValue": "https://waseemafrozstorage.dfs.core.windows.net/"
 		},
-		"trigger_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/f4f9bdf4-b629-40f8-8f41-e6d28f3a615a/resourceGroups/RG_AzureProject/providers/Microsoft.Storage/storageAccounts/waseemafrozstorage"
-		},
-		"trigger1_properties_typeProperties_scope": {
+		"Filetrigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/f4f9bdf4-b629-40f8-8f41-e6d28f3a615a/resourceGroups/RG_AzureProject/providers/Microsoft.Storage/storageAccounts/waseemafrozstorage"
 		},
@@ -109,11 +105,8 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"trigger_properties_typeProperties_scope": {
-						"value": "[parameters('trigger_properties_typeProperties_scope')]"
-					},
-					"trigger1_properties_typeProperties_scope": {
-						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
+					"Filetrigger_properties_typeProperties_scope": {
+						"value": "[parameters('Filetrigger_properties_typeProperties_scope')]"
 					}
 				}
 			},
