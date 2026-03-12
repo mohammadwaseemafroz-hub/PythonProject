@@ -1,0 +1,30 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"srcschema": {
+				"type": "string"
+			},
+			"srctable": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().srcschema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().srctable",
+				"type": "Expression"
+			}
+		}
+	}
+}
