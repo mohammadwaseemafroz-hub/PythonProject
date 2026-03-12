@@ -1,10 +1,6 @@
 {
 	"name": "AzureSqlTable",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabase",
-			"type": "LinkedServiceReference"
-		},
 		"parameters": {
 			"srcschema": {
 				"type": "string"
