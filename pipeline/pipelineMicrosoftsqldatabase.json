@@ -24,6 +24,14 @@
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
+					"dataset": {
+						"referenceName": "Microsoftsqldatabase",
+						"type": "DatasetReference",
+						"parameters": {
+							"Table_Schema": "\"",
+							"Table_Name": "\""
+						}
+					},
 					"firstRowOnly": false
 				}
 			},
@@ -68,7 +76,11 @@
 							"inputs": [
 								{
 									"referenceName": "Microsoftsqldatabase",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"Table_Schema": "\"",
+										"Table_Name": "\""
+									}
 								}
 							]
 						}
