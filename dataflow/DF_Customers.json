@@ -1,0 +1,40 @@
+{
+	"name": "DF_Customers",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Customer_csv",
+						"type": "DatasetReference"
+					},
+					"name": "customers"
+				},
+				{
+					"dataset": {
+						"referenceName": "orderheader",
+						"type": "DatasetReference"
+					},
+					"name": "Ordersource"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "CustomerDataset"
+				}
+			],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> customers",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Ordersource",
+				"customers select(skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> CustomerDataset"
+			]
+		}
+	}
+}
