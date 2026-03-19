@@ -6,34 +6,158 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DS_Customer_csv",
+						"referenceName": "DS_Customer",
 						"type": "DatasetReference"
 					},
 					"name": "customers"
 				},
 				{
 					"dataset": {
-						"referenceName": "orderheader",
+						"referenceName": "Salesheaderorder",
 						"type": "DatasetReference"
 					},
 					"name": "Ordersource"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Top_customers",
+						"type": "DatasetReference"
+					},
+					"name": "sink"
+				}
+			],
 			"transformations": [
 				{
 					"name": "CustomerDataset"
+				},
+				{
+					"name": "CustomerUpdate"
+				},
+				{
+					"name": "FinalCustomer"
+				},
+				{
+					"name": "OrderFinal"
+				},
+				{
+					"name": "JoinCustomers"
+				},
+				{
+					"name": "JoinedDataset"
+				},
+				{
+					"name": "rankeddata"
+				},
+				{
+					"name": "filterranks"
 				}
 			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          CustomerID as string,",
+				"          PersonID as string,",
+				"          StoreID as string,",
+				"          TerritoryID as string,",
+				"          AccountNumber as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> customers",
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          SalesOrderID as string,",
+				"          RevisionNumber as string,",
+				"          OrderDate as string,",
+				"          DueDate as string,",
+				"          ShipDate as string,",
+				"          Status as string,",
+				"          OnlineOrderFlag as string,",
+				"          SalesOrderNumber as string,",
+				"          PurchaseOrderNumber as string,",
+				"          AccountNumber as string,",
+				"          CustomerID as string,",
+				"          SalesPersonID as string,",
+				"          TerritoryID as string,",
+				"          BillToAddressID as string,",
+				"          ShipToAddressID as string,",
+				"          ShipMethodID as string,",
+				"          CreditCardID as string,",
+				"          CreditCardApprovalCode as string,",
+				"          CurrencyRateID as string,",
+				"          SubTotal as string,",
+				"          TaxAmt as string,",
+				"          Freight as string,",
+				"          TotalDue as string,",
+				"          Comment as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> Ordersource",
-				"customers select(skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> CustomerDataset"
+				"customers select(mapColumn(",
+				"          CustomerID,",
+				"          PersonID,",
+				"          StoreID,",
+				"          TerritoryID,",
+				"          AccountNumber,",
+				"          rowguid,",
+				"          ModifiedDate",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> CustomerDataset",
+				"CustomerDataset derive({Full Sales Name} = concatWS(' ','Account number of ','StoreID','-',StoreID, '=' ,AccountNumber)) ~> CustomerUpdate",
+				"CustomerUpdate select(mapColumn(",
+				"          CustomerID,",
+				"          PersonID,",
+				"          TerritoryID,",
+				"          rowguid,",
+				"          ModifiedDate,",
+				"          {Full Sales Name}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> FinalCustomer",
+				"Ordersource select(mapColumn(",
+				"          SalesOrderID,",
+				"          CustomerID,",
+				"          SubTotal,",
+				"          TaxAmt",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> OrderFinal",
+				"FinalCustomer, OrderFinal join(FinalCustomer@CustomerID == OrderFinal@CustomerID,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> JoinCustomers",
+				"JoinCustomers select(mapColumn(",
+				"          CustomerID = FinalCustomer@CustomerID,",
+				"          PersonID,",
+				"          TerritoryID,",
+				"          rowguid,",
+				"          ModifiedDate,",
+				"          {Full Sales Name},",
+				"          SalesOrderID,",
+				"          SubTotal,",
+				"          TaxAmt",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> JoinedDataset",
+				"JoinedDataset rank(desc(TaxAmt, true),",
+				"     output(rank as long),",
+				"     dense: true) ~> rankeddata",
+				"rankeddata filter(rank<2) ~> filterranks",
+				"filterranks sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink"
 			]
 		}
 	}
