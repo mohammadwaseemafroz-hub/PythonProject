@@ -152,6 +152,7 @@
 				"rankeddata filter(rank<2) ~> filterranks",
 				"filterranks sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     partitionFileNames:['Top_Customers'],",
 				"     truncate: true,",
 				"     umask: 0022,",
 				"     preCommands: [],",
