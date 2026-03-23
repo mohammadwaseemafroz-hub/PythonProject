@@ -166,7 +166,10 @@
 									"additionalColumns": [
 										{
 											"name": "cdc_timestamp",
-											"value": ""
+											"value": {
+												"value": "@activity('max cdc').output.resultsets[0].rows[0].cdc_timestamp",
+												"type": "Expression"
+											}
 										}
 									],
 									"storeSettings": {
@@ -181,13 +184,7 @@
 								"sink": {
 									"type": "ParquetSink",
 									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings",
-										"metadata": [
-											{
-												"name": "",
-												"value": ""
-											}
-										]
+										"type": "AzureBlobFSWriteSettings"
 									},
 									"formatSettings": {
 										"type": "ParquetWriteSettings"
