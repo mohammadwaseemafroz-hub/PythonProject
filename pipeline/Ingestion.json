@@ -83,7 +83,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greater(activity('totalresults').output.resultsets[0].rows[0].totalcount,0)",
+						"value": "@greater(\n    length(activity('max cdc').output.resultsets[0].rows),\n    0\n)",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
