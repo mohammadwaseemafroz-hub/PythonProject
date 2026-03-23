@@ -184,11 +184,8 @@
 										"type": "AzureBlobFSWriteSettings",
 										"metadata": [
 											{
-												"name": "cdc_timestamp",
-												"value": {
-													"value": "@activity('max cdc').output.result[0].rows[0].cdc_timestamp",
-													"type": "Expression"
-												}
+												"name": "",
+												"value": ""
 											}
 										]
 									},
