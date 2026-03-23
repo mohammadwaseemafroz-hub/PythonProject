@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "last_cdc",
+				"name": "last_cdc1",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -51,7 +51,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "Select * from @{pipeline().parameters.schema}.@{pipeline().parameters.table} \nwhere last_updated > '@{activity('last_cdc').output.value[0].cdc_timestamp}'",
+							"value": "Select * from @{pipeline().parameters.schema}.@{pipeline().parameters.table} \nwhere last_updated > '@{activity('last_cdc1').output.value[0].cdc_timestamp}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -94,7 +94,7 @@
 				"type": "Script",
 				"dependsOn": [
 					{
-						"activity": "last_cdc",
+						"activity": "last_cdc1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -117,7 +117,7 @@
 						{
 							"type": "Query",
 							"text": {
-								"value": "Select count (*) as totalcount from @{pipeline().parameters.schema}.@{pipeline().parameters.table} \nwhere last_updated > '@{activity('last_cdc').output.value[0].cdc_timestamp}'",
+								"value": "Select count (*) as totalcount from @{pipeline().parameters.schema}.@{pipeline().parameters.table} \nwhere last_updated > '@{activity('last_cdc1').output.value[0].cdc_timestamp}'",
 								"type": "Expression"
 							}
 						}
