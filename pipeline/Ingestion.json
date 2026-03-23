@@ -3,37 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "last_cdc1",
-				"type": "Lookup",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "JsonSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "JsonReadSettings"
-						}
-					},
-					"dataset": {
-						"referenceName": "last_cdc",
-						"type": "DatasetReference"
-					},
-					"firstRowOnly": false
-				}
-			},
-			{
 				"name": "Load",
 				"type": "Copy",
 				"state": "Inactive",
@@ -90,16 +59,40 @@
 				]
 			},
 			{
+				"name": "last_cdc",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "last_cdc_json",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
 				"name": "Script1",
 				"type": "Script",
-				"dependsOn": [
-					{
-						"activity": "last_cdc1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -117,7 +110,7 @@
 						{
 							"type": "Query",
 							"text": {
-								"value": "Select count (*) as totalcount from @{pipeline().parameters.schema}.@{pipeline().parameters.table} \nwhere last_updated > '@{activity('last_cdc1').output.value[0].cdc_timestamp}'",
+								"value": "Select count (*) as totalcount from @{pipeline().parameters.schema}.@{pipeline().parameters.table} \nwhere last_updated > '@{activity('last_cdc').output.value[0].cdc_timestamp}'",
 								"type": "Expression"
 							}
 						}

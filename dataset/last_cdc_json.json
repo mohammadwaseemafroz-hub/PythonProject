@@ -1,0 +1,20 @@
+{
+	"name": "last_cdc_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkserviceDL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "cdc.json",
+				"folderPath": "monitor",
+				"fileSystem": "source"
+			}
+		},
+		"schema": {}
+	}
+}
