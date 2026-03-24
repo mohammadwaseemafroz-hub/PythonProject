@@ -61,7 +61,7 @@
 						{
 							"type": "Query",
 							"text": {
-								"value": "select count (*) from as total_count @{pipeline().parameters.schema}.@{pipeline().parameters.table} where last_updated > '@{activity('last_cdc').output.value[0].cdc_timestamp}'",
+								"value": "select count (*) as total_count from @{pipeline().parameters.schema}.@{pipeline().parameters.table} where last_updated > '@{activity('last_cdc').output.value[0].cdc_timestamp}'",
 								"type": "Expression"
 							}
 						}
