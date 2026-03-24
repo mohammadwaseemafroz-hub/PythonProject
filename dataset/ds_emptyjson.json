@@ -1,0 +1,17 @@
+{
+	"name": "ds_emptyjson",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkserviceDL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			}
+		},
+		"schema": {}
+	}
+}
