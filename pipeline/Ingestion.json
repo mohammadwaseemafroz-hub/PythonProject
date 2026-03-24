@@ -29,7 +29,8 @@
 					"dataset": {
 						"referenceName": "ds_cdc",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
