@@ -16,18 +16,19 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select * from INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
 					},
 					"dataset": {
-						"referenceName": "AzureSqlTable1",
-						"type": "DatasetReference",
-						"parameters": {
-							"srcschema": "\"",
-							"srctable": "\""
-						}
+						"referenceName": "ds_cdc",
+						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
 				}
@@ -90,18 +91,8 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "AzureSqlTable1",
-									"type": "DatasetReference",
-									"parameters": {
-										"srcschema": {
-											"value": "@item().TABLE_SCHEMA",
-											"type": "Expression"
-										},
-										"srctable": {
-											"value": "@item().TABLE_NAME",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "ds_database",
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
