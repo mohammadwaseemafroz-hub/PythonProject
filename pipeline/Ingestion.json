@@ -185,7 +185,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "ds_emptyjson",
+									"referenceName": "ds_cdc",
 									"type": "DatasetReference"
 								}
 							],
